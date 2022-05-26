@@ -10,6 +10,9 @@ import com.nepplus.android_retrofit.api.APIList
 import com.nepplus.android_retrofit.api.ServerAPI
 import com.nepplus.android_retrofit.databinding.ActivityLoginBinding
 import com.nepplus.android_retrofit.models.BasicResponse
+import com.nepplus.android_retrofit.models.UserData
+import com.nepplus.android_retrofit.utils.ContextUtil
+import com.nepplus.android_retrofit.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,6 +54,11 @@ class LoginActivity : BaseActivity() {
 
                     if (response.isSuccessful) {
                         Log.d("서버 성공 응답", response.body().toString())
+
+                        val user = response.body()!!.data.user
+                        GlobalData.loginUser =UserData(user.id, user.email, user.nick_name, user.profile_img)
+                        ContextUtil.setLoginToken(mContext, response.body()!!.data.token)
+
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
                     } else {

@@ -2,7 +2,6 @@ package com.nepplus.android_retrofit
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.nepplus.android_retrofit.adapters.MainViewPagerAdapter
 import com.nepplus.android_retrofit.databinding.ActivityMainBinding
@@ -40,11 +39,11 @@ class MainActivity : BaseActivity() {
 
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
-                R.layout.fragment_feed -> binding.mainViewPager.currentItem = 0
-                R.layout.fragment_stat -> binding.mainViewPager.currentItem = 1
-                R.layout.fragment_home -> binding.mainViewPager.currentItem = 2
-                R.layout.fragment_time_table -> binding.mainViewPager.currentItem = 3
-                R.layout.fragment_setting -> binding.mainViewPager.currentItem = 4
+                R.id.feed -> binding.mainViewPager.currentItem = 0
+                R.id.stat -> binding.mainViewPager.currentItem = 1
+                R.id.home -> binding.mainViewPager.currentItem = 2
+                R.id.timeTable -> binding.mainViewPager.currentItem = 3
+                R.id.setting -> binding.mainViewPager.currentItem = 4
             }
             return@setOnItemSelectedListener true
         }
