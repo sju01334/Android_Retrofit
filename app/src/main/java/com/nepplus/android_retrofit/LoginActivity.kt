@@ -51,6 +51,8 @@ class LoginActivity : BaseActivity() {
 
                     if (response.isSuccessful) {
                         Log.d("서버 성공 응답", response.body().toString())
+                        val myIntent = Intent(mContext, MainActivity::class.java)
+                        startActivity(myIntent)
                     } else {
                         val errorBody = response.errorBody()!!
                         Log.d("에러 응답", errorBody.toString())
