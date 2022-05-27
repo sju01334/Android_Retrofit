@@ -2,9 +2,16 @@ package com.nepplus.android_retrofit
 
 import android.content.Context
 import android.os.Bundle
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import com.nepplus.android_retrofit.api.APIList
 import com.nepplus.android_retrofit.api.ServerAPI
+import com.nepplus.android_retrofit.databinding.CustomActionBarBinding
 
 abstract class BaseActivity :  AppCompatActivity(){
 
@@ -14,14 +21,39 @@ abstract class BaseActivity :  AppCompatActivity(){
 
     val TAG = javaClass.simpleName
 
+    lateinit var  closeBtn : ImageView
+    lateinit var titleTxt : TextView
+    lateinit var profileImg : ImageView
+
+    lateinit var customBinding : CustomActionBarBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mContext = this
         val retrofit = ServerAPI.getRetrofit()
         apiList = retrofit.create(APIList::class.java)
+
+        supportActionBar?.let {
+            setCustomActionBar()
+        }
     }
 
     abstract fun setupEvents()
     abstract fun setValues()
+
+    fun setCustomActionBar() {
+        val defaultActionBar = supportActionBar!!
+        defaultActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+
+        val parent = this.window.decorView as ViewGroup
+        customBinding = DataBindingUtil.inflate(this.layoutInflater, R.layout.custom_action_bar, parent, false)
+        defaultActionBar.setCustomView(customBinding.root)
+
+        val myToolbar = defaultActionBar.customView.parent as Toolbar
+        myToolbar.setContentInsetsAbsolute(0,0)
+
+        customBinding.backBtn.setOnClickListener { finish() }
+        customBinding.closeBtn.setOnClickListener { finish() }
+    }
 }

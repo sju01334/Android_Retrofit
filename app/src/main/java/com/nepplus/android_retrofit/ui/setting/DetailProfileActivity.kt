@@ -3,6 +3,7 @@ package com.nepplus.android_retrofit.ui.setting
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -51,6 +52,10 @@ class DetailProfileActivity : BaseActivity() {
                     override fun positiveBtnClicked() {
                         val changedNick = alert.binding.contentEdt.text.toString()
 
+                        if(changedNick.isBlank()){
+                            Toast.makeText(mContext, "닉네임은 공백일 수 없습니다", Toast.LENGTH_SHORT).show()
+                        }
+
                         apiList.patchReqeustEditUser(
                             ContextUtil.getLoginToken(mContext),
                             changedNick,
@@ -67,6 +72,7 @@ class DetailProfileActivity : BaseActivity() {
                                     binding.nicknameTxt.text = br.data.user.nick_name
 
                                     Toast.makeText(mContext, "닉네임 변경이 완료되었습니다", Toast.LENGTH_SHORT).show()
+                                    alert.dialog.dismiss()
                                 }
                                 else{
                                   val jsonObj = JSONObject(response.errorBody()!!.string())
@@ -85,8 +91,9 @@ class DetailProfileActivity : BaseActivity() {
                     }
 
                     override fun negativeBtnClicked() {
-                        TODO("Not yet implemented")
+                        alert.dialog.dismiss()
                     }
+
 
                 }
             )
@@ -101,6 +108,6 @@ class DetailProfileActivity : BaseActivity() {
         binding.emailTxt.text = loginUser.email
         binding.nicknameTxt.text = loginUser.nick_name
 
-
+        customBinding.closeBtn.visibility = View.GONE
     }
 }
