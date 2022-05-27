@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/blueGrey_900"
                 android:layout_marginStart="10dp"
-                android:text="확인"/>
+                android:text="취소"/>
         </LinearLayout>
 
 
