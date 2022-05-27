@@ -1,6 +1,6 @@
 package com.nepplus.android_retrofit.models
 
-class UserData(
+data class UserData(
     val id : Int,
     val email : String,
     val nick_name : String,

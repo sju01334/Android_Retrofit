@@ -25,12 +25,17 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
         setupEvents()
         setValues()
 
     }
 
     override fun setupEvents() {
+
+        binding.autoCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
+            ContextUtil.setAutoLogin(mContext, isChecked)
+        }
 
         binding.signUpBtn.setOnClickListener {
             val myIntent = Intent(mContext, SignupActivity::class.java)
@@ -58,9 +63,14 @@ class LoginActivity : BaseActivity() {
                         val user = response.body()!!.data.user
                         GlobalData.loginUser =UserData(user.id, user.email, user.nick_name, user.profile_img)
                         ContextUtil.setLoginToken(mContext, response.body()!!.data.token)
+                        ContextUtil.setAutoLogin(mContext, binding.autoCheckBox.isChecked)
+
+                        Toast.makeText(mContext, "${GlobalData.loginUser!!.nick_name}님 환영합니다", Toast.LENGTH_SHORT).show()
 
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)
+                        finish()
+
                     } else {
                         val errorBody = response.errorBody()!!
                         Log.d("에러 응답", errorBody.toString())
@@ -81,6 +91,6 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
-
+        binding.autoCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
     }
 }
