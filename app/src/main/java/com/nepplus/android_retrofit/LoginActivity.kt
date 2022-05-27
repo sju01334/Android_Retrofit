@@ -61,7 +61,7 @@ class LoginActivity : BaseActivity() {
                         Log.d("서버 성공 응답", response.body().toString())
 
                         val user = response.body()!!.data.user
-                        GlobalData.loginUser =UserData(user.id, user.email, user.nick_name, user.profile_img)
+                        GlobalData.loginUser = user
                         ContextUtil.setLoginToken(mContext, response.body()!!.data.token)
                         ContextUtil.setAutoLogin(mContext, binding.autoCheckBox.isChecked)
 

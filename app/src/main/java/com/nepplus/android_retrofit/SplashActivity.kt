@@ -39,7 +39,7 @@ class SplashActivity : BaseActivity() {
                     isTokenOk= true
                     val user = response.body()!!.data.user
 
-                    GlobalData.loginUser = UserData(user.id, user.email, user.nick_name, user.profile_img)
+                    GlobalData.loginUser = user
                 }else {
                     Log.d("응답실패다", "실패다")
                 }

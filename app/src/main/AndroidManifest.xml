@@ -16,7 +16,11 @@
             android:name=".SplashActivity"
             android:theme="@style/noActionBarTheme"
             android:exported="true">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
 
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
         </activity>
         <activity
             android:name=".DetailProfileActivity"
@@ -27,13 +31,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/noActionBarTheme">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-        </activity>
+            android:theme="@style/noActionBarTheme"/>
 
         <activity
             android:name=".MainActivity"
