@@ -1,8 +1,9 @@
-package com.nepplus.android_retrofit
+package com.nepplus.android_retrofit.ui.setting
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.nepplus.android_retrofit.BaseActivity
+import com.nepplus.android_retrofit.R
 import com.nepplus.android_retrofit.databinding.ActivityDetailProfileBinding
 
 class DetailProfileActivity : BaseActivity() {

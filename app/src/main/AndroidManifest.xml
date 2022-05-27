@@ -23,18 +23,18 @@
                 </intent-filter>
         </activity>
         <activity
-            android:name=".DetailProfileActivity"
+            android:name=".ui.setting.DetailProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".ui.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.main.LoginActivity"
             android:exported="true"
             android:theme="@style/noActionBarTheme"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false"
             android:theme="@style/darkNoActionBarTheme" />
     </application>

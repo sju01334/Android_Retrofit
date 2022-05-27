@@ -1,8 +1,10 @@
-package com.nepplus.android_retrofit
+package com.nepplus.android_retrofit.ui.main
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
+import com.nepplus.android_retrofit.BaseActivity
+import com.nepplus.android_retrofit.R
 import com.nepplus.android_retrofit.adapters.MainViewPagerAdapter
 import com.nepplus.android_retrofit.databinding.ActivityMainBinding
 

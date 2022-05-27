@@ -1,13 +1,13 @@
 package com.nepplus.android_retrofit
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.nepplus.android_retrofit.models.BasicResponse
-import com.nepplus.android_retrofit.models.UserData
+import com.nepplus.android_retrofit.ui.main.LoginActivity
+import com.nepplus.android_retrofit.ui.main.MainActivity
 import com.nepplus.android_retrofit.utils.ContextUtil
 import com.nepplus.android_retrofit.utils.GlobalData
 import retrofit2.Call

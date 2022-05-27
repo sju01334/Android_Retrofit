@@ -1,10 +1,11 @@
-package com.nepplus.android_retrofit
+package com.nepplus.android_retrofit.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.nepplus.android_retrofit.BaseActivity
+import com.nepplus.android_retrofit.R
 import com.nepplus.android_retrofit.databinding.ActivitySignupBinding
 import com.nepplus.android_retrofit.models.BasicResponse
 import org.json.JSONObject
