@@ -32,6 +32,18 @@ interface APIList {
         @Field("nick_name") nick : String
     ) : Call<BasicResponse>
 
+    //    goal
+    @FormUrlEncoded
+    @POST("/goal")
+    fun postRequestAddGoal(
+        @Header("X-Http-Token") token : String,
+        @Field("title") title : String,
+        @Field("color_value") color_value : String,
+        @Field("group_id") group_id : String,
+        @Field("goal_hour") goal_hour : String,
+        @Field("goal_minute") goal_minute : String,
+    ): Call<BasicResponse>
+
 //    main
     @GET("/main_info")
     fun getRequestMainInfo(@Header("X-Http-Token") token : String) : Call<BasicResponse>

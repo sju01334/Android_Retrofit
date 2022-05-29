@@ -21,10 +21,6 @@ abstract class BaseActivity :  AppCompatActivity(){
 
     val TAG = javaClass.simpleName
 
-    lateinit var  closeBtn : ImageView
-    lateinit var titleTxt : TextView
-    lateinit var profileImg : ImageView
-
     lateinit var customBinding : CustomActionBarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +48,7 @@ abstract class BaseActivity :  AppCompatActivity(){
 
         val myToolbar = defaultActionBar.customView.parent as Toolbar
         myToolbar.setContentInsetsAbsolute(0,0)
+
 
         customBinding.backBtn.setOnClickListener { finish() }
         customBinding.closeBtn.setOnClickListener { finish() }

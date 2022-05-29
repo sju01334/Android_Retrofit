@@ -1,5 +1,6 @@
 package com.nepplus.android_retrofit.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.nepplus.android_retrofit.R
 import com.nepplus.android_retrofit.databinding.FragmentHomeBinding
+import com.nepplus.android_retrofit.ui.goal.AddGoalActivity
 import java.util.*
 
 class HomeFragment : BaseFragment() {
@@ -29,6 +31,15 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+        binding.addGoalBtn.setOnClickListener {
+            val myIntent = Intent(mContext, AddGoalActivity::class.java)
+            startActivity(myIntent)
+        }
+
+        binding.faBtn.setOnClickListener {
+            val myIntent = Intent(mContext, AddGoalActivity::class.java)
+            startActivity(myIntent)
+        }
 
     }
 
