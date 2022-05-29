@@ -8,12 +8,23 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.nepplus.android_retrofit.R
 import com.nepplus.android_retrofit.databinding.FragmentHomeBinding
+import com.nepplus.android_retrofit.models.BasicResponse
+import com.nepplus.android_retrofit.models.GroupData
 import com.nepplus.android_retrofit.ui.goal.AddGoalActivity
+import com.nepplus.android_retrofit.utils.ContextUtil
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class HomeFragment : BaseFragment() {
 
-    lateinit var binding: FragmentHomeBinding
+    lateinit var binding : FragmentHomeBinding
+//    lateinit var mGroupAdapter : MainRecyclerViewAdapter
+
+    var groupList = ArrayList<GroupData>()
+
+    var totalGoalSecond = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +41,11 @@ class HomeFragment : BaseFragment() {
         setValues()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getDataFromServer()
+    }
+
     override fun setupEvents() {
         binding.addGoalBtn.setOnClickListener {
             val myIntent = Intent(mContext, AddGoalActivity::class.java)
@@ -40,7 +56,6 @@ class HomeFragment : BaseFragment() {
             val myIntent = Intent(mContext, AddGoalActivity::class.java)
             startActivity(myIntent)
         }
-
     }
 
     override fun setValues() {
@@ -49,5 +64,51 @@ class HomeFragment : BaseFragment() {
         val day = myCal.get(Calendar.DATE)
 
         binding.titleTxt.text = "${month+1}월 ${day}일"
+
+//        if (totalGoalSecond == 0) {
+//            binding.emptyLayout.visibility = View.VISIBLE
+//            binding.mainRecyclerView.visibility = View.GONE
+//        }
+//        else {
+//            binding.emptyLayout.visibility = View.GONE
+//            binding.mainRecyclerView.visibility = View.VISIBLE
+//        }
     }
+
+    fun getDataFromServer() {
+        apiList.getRequestMainInfo(
+            ContextUtil.getLoginToken(mContext)
+        ).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if (response.isSuccessful) {
+//                    val br = response.body()!!
+//                    totalGoalSecond = br.data.total_goal_seconds
+//
+//                    if (totalGoalSecond > 0) {
+//
+//                        if (groupList.size != 0) {
+//                            groupList.clear()
+//                        }
+//
+//                        groupList.addAll(br.data.user.groups)
+//                        initAdapters()
+//                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+        })
+    }
+
+    fun initAdapters () {
+//        mGroupAdapter = MainRecyclerViewAdapter(mContext, groupList)
+//        binding.mainRecyclerView.adapter = mGroupAdapter
+//        binding.mainRecyclerView.layoutManager = LinearLayoutManager(mContext)
+//
+//        mGroupAdapter.notifyDataSetChanged()
+    }
+
+
 }
