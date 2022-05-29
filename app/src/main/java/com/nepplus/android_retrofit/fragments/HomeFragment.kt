@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nepplus.android_retrofit.R
+import com.nepplus.android_retrofit.adapters.MainRecyclerViewAdapter
 import com.nepplus.android_retrofit.databinding.FragmentHomeBinding
 import com.nepplus.android_retrofit.models.BasicResponse
 import com.nepplus.android_retrofit.models.GroupData
@@ -20,7 +22,7 @@ import java.util.*
 class HomeFragment : BaseFragment() {
 
     lateinit var binding : FragmentHomeBinding
-//    lateinit var mGroupAdapter : MainRecyclerViewAdapter
+    lateinit var mGroupAdapter : MainRecyclerViewAdapter
 
     var groupList = ArrayList<GroupData>()
 
@@ -65,14 +67,14 @@ class HomeFragment : BaseFragment() {
 
         binding.titleTxt.text = "${month+1}월 ${day}일"
 
-//        if (totalGoalSecond == 0) {
-//            binding.emptyLayout.visibility = View.VISIBLE
-//            binding.mainRecyclerView.visibility = View.GONE
-//        }
-//        else {
-//            binding.emptyLayout.visibility = View.GONE
-//            binding.mainRecyclerView.visibility = View.VISIBLE
-//        }
+        if (totalGoalSecond == 0) {
+            binding.emptyLayout.visibility = View.VISIBLE
+            binding.mainRecyclerView.visibility = View.GONE
+        }
+        else {
+            binding.emptyLayout.visibility = View.GONE
+            binding.mainRecyclerView.visibility = View.VISIBLE
+        }
     }
 
     fun getDataFromServer() {
@@ -81,18 +83,18 @@ class HomeFragment : BaseFragment() {
         ).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if (response.isSuccessful) {
-//                    val br = response.body()!!
-//                    totalGoalSecond = br.data.total_goal_seconds
-//
-//                    if (totalGoalSecond > 0) {
-//
-//                        if (groupList.size != 0) {
-//                            groupList.clear()
-//                        }
-//
-//                        groupList.addAll(br.data.user.groups)
-//                        initAdapters()
-//                    }
+                    val br = response.body()!!
+                    totalGoalSecond = br.data.total_goal_seconds
+
+                    if (totalGoalSecond > 0) {
+
+                        if (groupList.size != 0) {
+                            groupList.clear()
+                        }
+
+                        groupList.addAll(br.data.user.groups)
+                        initAdapters()
+                    }
                 }
             }
 
@@ -103,11 +105,11 @@ class HomeFragment : BaseFragment() {
     }
 
     fun initAdapters () {
-//        mGroupAdapter = MainRecyclerViewAdapter(mContext, groupList)
-//        binding.mainRecyclerView.adapter = mGroupAdapter
-//        binding.mainRecyclerView.layoutManager = LinearLayoutManager(mContext)
-//
-//        mGroupAdapter.notifyDataSetChanged()
+        mGroupAdapter = MainRecyclerViewAdapter(mContext, groupList)
+        binding.mainRecyclerView.adapter = mGroupAdapter
+        binding.mainRecyclerView.layoutManager = LinearLayoutManager(mContext)
+
+        mGroupAdapter.notifyDataSetChanged()
     }
 
 
